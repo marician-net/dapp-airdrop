@@ -1,5 +1,5 @@
 # DApp-Airdrop
-Créer une DApp de Airdrop de A à Z | Wagmi V2, Viem V2, RainbowKit V2, Hardhat, NextJS, Typescript
+Wagmi V2, Viem V2, RainbowKit V2, Hardhat, NextJS, Typescript
 
 # yarn
 Yarn est un gestionnaire de paquets pour les projets JavaScript, développé par Facebook en collaboration avec d'autres grandes entreprises comme Google et Tilde. Il est conçu pour gérer les dépendances de vos projets de manière rapide, fiable et sécurisée. Voici quelques-unes de ses fonctionnalités clés :

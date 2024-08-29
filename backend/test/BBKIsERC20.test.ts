@@ -81,9 +81,23 @@ describe("BBKIsERC20 Tests", function() {
       let expectedBalance = ethers.parseEther('2');
 
       assert(balance === expectedBalance);
-    }) 
+    })    
+
   });
 
+  // Set Merkle root
+  describe('setMerkleRoot', function() {
+    it('should NOT set the merkle root if the caller is NOT the owner', async function () {
+      const {contract, merkleTree, owner, addr1, addr2} = await loadFixture(deployContractFixture);
+      loadFixture(deployContractFixture);
+      await expect(contract.connect(addr1).setMerkleRoot(merkleTree.root)).to.be.revertedWithCustomError(
+        contract,
+        "OwnableUnauthorizedAccount"
+      ).withArgs(
+        addr1.address
+      );
+    })
+  })
 
 
 });
