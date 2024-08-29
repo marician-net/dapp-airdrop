@@ -42,5 +42,22 @@ describe("BBKIsERC20 Tests", function() {
         assert(contractOwner === owner.address);
       }
     )
-  })
-})
+  });
+
+  // mint
+  describe("Mint", function () {
+    it('should NOT mint NOT whitelisted | @openzeppelin/merkle-tree library Test',
+      async function () {
+        const {contract, merkleTree, owner, addr1, addr2} = await loadFixture(deployContractFixture);
+        try{
+          const proof = merkleTree.getProof([addr2.address]);
+          expect.fail("Expected an error 'Error: Leaf not in tree but none was thrown.");
+        }catch(error){
+          const err = error as Error;
+          expect(err.message).to.include('Leaf is not in tree');
+        }      
+      }
+      
+    )
+  });
+});
