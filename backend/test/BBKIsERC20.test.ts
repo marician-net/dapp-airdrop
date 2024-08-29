@@ -71,6 +71,17 @@ describe("BBKIsERC20 Tests", function() {
       await contract.connect(addr1).mint(addr1.address, proof);
       await expect(contract.connect(addr1).mint(addr1.address,proof)).to.be.rejectedWith('Tokens already minted');
     }) 
+
+    it('should mint tokens if user is whitelisted and has not mintes yet', async function () {
+      const {contract, merkleTree, owner, addr1, addr2} = await loadFixture(deployContractFixture);
+      const proof = merkleTree.getProof([addr1.address]);
+      await contract.connect(addr1).mint(addr1.address, proof);
+
+      let balance = await contract.balanceOf(addr1.address);
+      let expectedBalance = ethers.parseEther('2');
+
+      assert(balance === expectedBalance);
+    }) 
   });
 
 
