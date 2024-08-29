@@ -88,8 +88,7 @@ describe("BBKIsERC20 Tests", function() {
   // Set Merkle root
   describe('setMerkleRoot', function() {
     it('should NOT set the merkle root if the caller is NOT the owner', async function () {
-      const {contract, merkleTree, owner, addr1, addr2} = await loadFixture(deployContractFixture);
-      loadFixture(deployContractFixture);
+      const {contract, merkleTree, owner, addr1, addr2} = await loadFixture(deployContractFixture);     
       await expect(contract.connect(addr1).setMerkleRoot(merkleTree.root)).to.be.revertedWithCustomError(
         contract,
         "OwnableUnauthorizedAccount"
@@ -97,7 +96,16 @@ describe("BBKIsERC20 Tests", function() {
         addr1.address
       );
     })
-  })
+
+    it('should set the merkle root if the caller is the owner', async function () {
+      const {contract, merkleTree, owner, addr1, addr2} = await loadFixture(deployContractFixture);
+      let newMerkleRoot = "0xed316a3591e8b4d42cb27e2ddf685f361c0abedabfd7bbf7b1451949d309b218";
+      await contract.setMerkleRoot(newMerkleRoot);
+      let contractMerkleRoot = await contract.merkleRoot();
+      assert(newMerkleRoot === contractMerkleRoot);   
+    })
+
+  });
 
 
 });
