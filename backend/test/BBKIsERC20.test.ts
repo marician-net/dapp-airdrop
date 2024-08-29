@@ -24,9 +24,20 @@ describe("BBKIsERC20 Tests", function() {
   async function deployContractFixture() {
     const [owner, addr1, addr2] = await ethers.getSigners();
 
-    merkleTree = StandardMerkleTree.of(whiteListed, ["address"], {sortLeaves: true});
+    /**  whiteListed : Le tableau d'adresses que vous souhaitez inclure dans l'arbre Merkle.
+      ["address"] : C'est un tableau qui indique le type de données contenues dans chaque élément de la liste. 
+      Ici, cela spécifie que chaque élément est une adresse Ethereum.
+      {sortLeaves: true} : Cette option indique que les feuilles (les hachages des adresses) doivent être triées avant de créer l'arbre Merkle. 
+      Cela permet d'avoir un arbre Merkle standardisé, ce qui est important pour que les preuves de Merkle soient cohérentes.*/
+    
+    merkleTree = StandardMerkleTree.of(whiteListed, ["address"], {sortLeaves: true}); 
+
+    /** ethers.getContractFactory est une méthode fournie par ethers.js. 
+    Elle est utilisée pour créer une instance d'une "factory" pour un contrat intelligent. 
+    Une "factory" est un objet qui est utilisé pour déployer de nouveaux contrats intelligents sur la blockchain.*/
 
     const contractFactory = await ethers.getContractFactory("BBKIsERC20");
+
     const contract = await contractFactory.deploy(owner.address, merkleTree.root);
 
     return { contract, merkleTree, owner, addr1, addr2};
