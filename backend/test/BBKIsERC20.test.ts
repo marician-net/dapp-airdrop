@@ -56,8 +56,17 @@ describe("BBKIsERC20 Tests", function() {
           const err = error as Error;
           expect(err.message).to.include('Leaf is not in tree');
         }      
-      }
-      
+      }      
     )
+
+    it('should NOT mint NOT whitelisted | contract Test', async function () {
+      const {contract, merkleTree, owner, addr1, addr2} = await loadFixture(deployContractFixture);
+      const proof: string[] = [];
+      await expect(contract.connect(addr2).mint(addr2.address, proof)).to.be.revertedWith('Not whitelisted');
+      
+    })
   });
+
+
+
 });
