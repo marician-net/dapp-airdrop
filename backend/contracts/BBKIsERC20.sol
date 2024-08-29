@@ -15,7 +15,7 @@ contract BBKIsERC20 is ERC20, Ownable {
         ERC20("Ben BK Token","BBK")
         Ownable(_initialOwner)
     {
-
+        merkleRoot = _merkleRoot;
     }  
 
     /**
@@ -35,7 +35,7 @@ contract BBKIsERC20 is ERC20, Ownable {
     * @notice Change the merkle root 
     * @param _merkleRoot the new merkle root
     * */
-    function sertMerkleRoot(bytes32 _merkleRoot) external onlyOwner {
+    function setMerkleRoot(bytes32 _merkleRoot) external onlyOwner {
         merkleRoot = _merkleRoot;
     }
 
