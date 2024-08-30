@@ -1,5 +1,6 @@
 'use client';
 import { Flex, Text } from "@chakra-ui/react";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 function Header() {
   return (
@@ -9,7 +10,7 @@ function Header() {
         p="2rem"
     >
         <Text>Logo</Text>
-        <Text>Connexion</Text>
+        <ConnectButton />
 
     </Flex>
   )

@@ -10,4 +10,9 @@ npx hardhat test
 REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat ignition deploy ./ignition/modules/Lock.ts
+
+yarn hardhat clean
+yarn hardhat compile
+yarn hardhat node
+yarn hardhat run .\scripts\deploy.ts --network localhost
 ```
