@@ -9,7 +9,7 @@ function Header() {
         alignItems="center"
         p="2rem"
     >
-        <Text>Logo</Text>
+        <Text color="blue.500" fontWeight="bold">Oaiby</Text>
         <ConnectButton />
 
     </Flex>
